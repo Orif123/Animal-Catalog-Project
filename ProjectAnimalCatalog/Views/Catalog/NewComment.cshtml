@@ -1,0 +1,30 @@
+﻿@model ProjectAnimalCatalog.Models.Comment
+@{
+    Layout = "~/Views/_Layout.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NewComment</title>
+</head>
+<body>
+    <h1>Leave A comment For the Animal</h1>
+    <form>
+        <div>
+            <label class="form-label" asp-for="AnimalId"></label>
+            <input class="form-control" value="@(ViewContext.RouteData.Values["id"])" asp-for="AnimalId" readonly/>
+            <span asp-validation-for="AnimalId"></span>
+        </div>
+        <div>
+            <label class="form-label" asp-for="Comment1"></label>
+            <textarea placeholder="Plaese write your Comment here..." class="form-control" asp-for="Comment1"></textarea>
+            <span asp-validation-for="Comment1" class="text text-danger"></span>
+            <input class="btn btn-success" value="AddComment" type="submit" asp-action="AddComment" />
+            <a class="btn comment-button" asp-controller="Catalog" asp-action="Details" asp-route-id="@(ViewContext.RouteData.Values["id"])">Back</a>
+        </div>
+    </form>
+</body>
+</html>

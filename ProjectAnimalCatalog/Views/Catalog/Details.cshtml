@@ -1,0 +1,44 @@
+﻿@using ProjectAnimalCatalog.ViewModels
+@model AnimalCommentsDetails
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body >
+    @foreach (var animal in Model.animals)
+    {
+        <div class="card" >
+            <img src="@animal.PictureName" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title"><small class="text-muted"> Name:</small> @animal.Name</h5>
+                <div class="card-text">
+                    <p><small class="text-muted">Age:</small> @animal.Age</p>
+                    <p><small class="text-muted">Category Id:</small> @animal.CategoryId</p>
+                    <p><small class="text-muted">Description:</small> @animal.Description</p>
+                </div>
+
+                <a class="btn comment-button" asp-action="NewComment" asp-route-id="@animal.AnimalsId">Leave a comment</a>
+                <a class="btn comment-button" asp-controller="Catalog" asp-action="HomeCatalog">Back</a>
+            </div>
+        </div>
+        <h1 class="details">Comments</h1>
+
+    }
+    @foreach (var item in Model.comments)
+    {
+        <ul>
+            <li>@item.Comment1</li> 
+        </ul>
+    }
+
+
+</body>
+</html>

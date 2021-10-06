@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProjectAnimalCatalog.Models.Animal>
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HomePage</title>
+</head>
+<body id="gradient">
+    <h1 class="h1">Welcome to Ori Pet Shop</h1>
+    <h2 class="h2"> These are the  <small class="text-muted">most commented</small> animals we have in our website!</h2>
+    <table border="1" class="table table-striped" >
+        <thead>
+            <tr>
+                <th >
+                    @Html.DisplayNameFor(model => model.AnimalsId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PictureName)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var animal in Model)
+            {
+            <tr>
+                <td>
+                    @animal.AnimalsId
+                </td>
+                <td>
+                    @animal.Name
+                </td>
+                <td>
+                    <img src="@animal.PictureName" width="60", height="60"/> 
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-controller="Catalog" asp-action="Details" asp-route-id="@animal.AnimalsId">Details</a>
+                </td>
+            </tr>
+            }
+
+
+        </tbody>
+    </table>   
+    <div>
+        
+        <div class="d-grid gap-2">
+            <a style="height:200px;"  class="btn btn-primary btn-lg, text-warning bg-dark" asp-controller="Catalog" asp-action="HomeCatalog">
+               Go to Catalog
+            </a>
+            <a
+                asp-controller="Management" asp-action="Edit"   style="height:150px;" class="btn btn-primary btn-lg, text-warning bg-dark,">Go to manager View
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>

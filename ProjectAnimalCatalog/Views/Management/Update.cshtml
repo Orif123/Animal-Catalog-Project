@@ -1,0 +1,57 @@
+﻿@model ProjectAnimalCatalog.Models.Animal
+@{
+    Layout = "~/Views/_Layout.cshtml"; ;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <h1>Animal Update tab</h1>
+    <a class="btn comment-button" asp-controller="Management" asp-action="Edit">Back</a>
+    <form>
+        <div class="editor-label">
+            <label class="form-label" asp-for="AnimalsId"></label>
+            <input class="form-control" asp-for="AnimalsId" readonly />
+            <span asp-validation-for="AnimalsId" class="text text-danger"></span>
+        </div> <div class="editor-label">
+            <label class="form-label" asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" />
+            <span asp-validation-for="Name" class="text text-danger"></span>
+        </div>
+        <div class="editor-field">
+            <label class="form-label" asp-for="Age"></label>
+            <input class="form-control" asp-for="Age" />
+            <span asp-validation-for="Age" class="text text-danger"></span>
+        </div>
+        <div class="editor-label">
+            <label class="form-label" asp-for="PictureName"></label>
+            <input class="form-control" asp-for="PictureName" />
+            <span asp-validation-for="PictureName" class="text text-danger"></span>
+        </div>
+        <div class="editor-field">
+            <label class="form-label" asp-for="Description"></label>
+            <input class="form-control" asp-for="Description" />
+            <span asp-validation-for="Description" class="text text-danger"></span>
+        </div>
+        <div>
+            <label class="form-label">Category</label>
+            <select class="form-select" asp-for="CategoryId">
+                <option disabled selected>Select Animal Type</option>
+                <option value="1">mammels</option>
+                <option value="2">birds</option>
+                <option value="3">adc</option>
+                <option value="4">fishes</option>
+                <option value="5">reptiles</option>
+            </select>
+        </div>
+        <p>
+            <input type="submit" value="Update" class="btn btn-success" asp-action="UpdateData" />
+        </p>
+    </form>
+
+</body>
+</html>

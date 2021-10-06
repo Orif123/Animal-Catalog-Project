@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ProjectAnimalCatalog.Models.Animal>
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HomeCatalog</title>
+</head>
+<body>
+    <h1>Welcome to Management Page</h1>
+    <a class="btn comment-button" asp-controller="Home" asp-action="HomePage">Back To the Main Page</a>
+    <h2>To Add New Animal Click The button Below</h2>
+    <a class="btn btn-warning" asp-controller="Management" asp-action="NewAnimal">Add Animals</a>
+    <table border="1" class="table table-striped">
+
+        <thead>
+            <tr>
+                <th class="d-none d-lg-table-cell">
+                    @Html.DisplayNameFor(model => model.AnimalsId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PictureName)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var animal in Model)
+            {
+                @using (Html.BeginForm("Delete", "Management", new { id = animal.AnimalsId }))
+                {
+                    <tr>
+                        <td class="d-none d-lg-table-cell">
+                            @animal.AnimalsId
+                        </td>
+                        <td>
+                            @animal.Name
+                        </td>
+                        <td>
+                            @animal.Age
+                        </td>
+                        <td>
+                            @animal.CategoryId
+                        </td>
+                        <td>
+                            <img src="@animal.PictureName" height="60" width="60" />
+                        </td>
+                        <td>
+                            <input class="btn btn-danger" onclick="return confirm('Are you sure yo want to delete this animal?')" type="submit" value="Delete" />
+                            <input class="btn btn-info" value="Update" type="submit" asp-controller="Management" asp-action="Update" asp-route-id="@animal.AnimalsId" />
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>
+
